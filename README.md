@@ -5,23 +5,31 @@ Weaknet-iptables脚本是为了解决弱网络使用过程中，有时会出现�
 
 ## 1.获取源码
 <pre>
-git clone http://10.20.108.107:3000/mayabin/weaknet_iptables.git
+sudo git clone https://github.com/romebake/weaknet_iptables.git
 </pre>
 
 ## 2.安装所需python库
 <pre>
-pip install logging python-iptables ConcurrentLogHandler
+sudo pip install logging python-iptables ConcurrentLogHandler
 </pre>
 
 ## 3.运行
 ### （1）直接运行
 <pre>
 cd weaknet_iptables/
-python server.py
+sudo python server.py
 </pre>
 
 ### （2）后台运行
 <pre>
 cd weaknet_iptables/
-nohup python server.py &
+sudo nohup python server.py &
+</pre>
+
+### （3）Screen后台运行
+<pre>
+sudo screen -S weaknet_iptables
+cd weaknet_iptables/
+sudo python server.py
+ctrl + a + d
 </pre>
