@@ -90,15 +90,16 @@ def deleteRules(ipAddress, delCount):
     chain = iptc.Chain(table, "FORWARD")
     for rule in chain.rules:
         logging.info('rule.src = {0}'.format(rule.src))
-        if ipAddress in rule.src:
-            chain.delete_rule(rule)
-            delCount += 1
-            logging.debug('[Delete {0} rule in source]'.format(ipAddress))
         logging.info('rule.dst = {0}'.format(rule.dst))
-        if ipAddress in rule.dst:
-            chain.delete_rule(rule)
+        if ipAddress in rule.src:
+            delCount += 1
+            logging.debug('[Delete {0} rule in source]'.format(ipAddress))        
+        elif ipAddress in rule.dst:
             delCount += 1
             logging.debug('[Delete {0} rule in destination]'.format(ipAddress))
+        else:
+            continue
+        chain.delete_rule(rule)
     return delCount
 
 def handle_request(client_connection):
