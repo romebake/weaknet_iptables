@@ -99,7 +99,10 @@ def deleteRules(ipAddress, delCount):
             logging.debug('[Delete {0} rule in destination]'.format(ipAddress))
         else:
             continue
-        chain.delete_rule(rule)
+        try:
+            chain.delete_rule(rule)
+        except Exception, e:
+            logging.debug('[IP not in rule then delete error]')
     return delCount
 
 def handle_request(client_connection):
